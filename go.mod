@@ -4,7 +4,7 @@ go 1.25
 
 require (
 	github.com/gospider007/conf v0.0.0-20250815031235-1df45ae2e117
-	github.com/gospider007/gson v0.0.0-20260122150202-42368a4a5cdc
+	github.com/gospider007/gson v0.0.0-20260203092532-eb7c0c57f649
 	github.com/gospider007/tools v0.0.0-20260120074453-dbd9d4748c8a
 )
 
