@@ -1,6 +1,6 @@
 module github.com/gospider007/cmd
 
-go 1.25
+go 1.26.0
 
 require (
 	github.com/gospider007/conf v0.0.0-20250815031235-1df45ae2e117
