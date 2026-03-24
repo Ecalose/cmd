@@ -3,8 +3,8 @@ module github.com/gospider007/cmd
 go 1.26.0
 
 require (
-	github.com/gospider007/conf v0.0.0-20260323150136-856f32a66956
-	github.com/gospider007/gson v0.0.0-20260323150146-de57f2199baf
+	github.com/gospider007/conf v0.0.0-20260323170523-429be8f078eb
+	github.com/gospider007/gson v0.0.0-20260323170526-fb9f244ac887
 	github.com/gospider007/tools v0.0.0-20260323151002-ebe96ce78e71
 )
 
@@ -23,7 +23,7 @@ require (
 	github.com/tidwall/pretty v1.2.1 // indirect
 	github.com/tidwall/sjson v1.2.5 // indirect
 	go.mongodb.org/mongo-driver v1.17.9 // indirect
-	golang.org/x/image v0.37.0 // indirect
+	golang.org/x/image v0.38.0 // indirect
 	golang.org/x/net v0.52.0 // indirect
 	golang.org/x/text v0.35.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect

@@ -9,10 +9,10 @@ github.com/golang/snappy v1.0.0/go.mod h1:/XxbfmMg8lxefKM7IXC3fBNl/7bRcc72aCRzEW
 github.com/google/go-cmp v0.7.0 h1:wk8382ETsv4JYUZwIsn6YpYiWiBsYLSJiTsyBybVuN8=
 github.com/google/go-cmp v0.7.0/go.mod h1:pXiqmnSA92OHEEa9HXL2W4E7lf9JzCmGVUdgjX3N/iU=
 github.com/google/gofuzz v1.0.0/go.mod h1:dBl0BpW6vV/+mYPU4Po3pmUjxk6FQPldtuIdl/M65Eg=
-github.com/gospider007/conf v0.0.0-20260323150136-856f32a66956 h1:vHW0iXkkoVfGkvMDxixFfqQOggXKVsTtorXrnewIPNw=
-github.com/gospider007/conf v0.0.0-20260323150136-856f32a66956/go.mod h1:2ldij/JxXZYs2LFajCQvpdlAD6gYXEgeeYnodyx3QAM=
-github.com/gospider007/gson v0.0.0-20260323150146-de57f2199baf h1:sgpmp5EUBEgoUQgz2k47eANhooRJNTyl8jytzChNqbI=
-github.com/gospider007/gson v0.0.0-20260323150146-de57f2199baf/go.mod h1:jjihehcjH2y0j7f/yZOQL1YAuw+S7JwDcRarLeiI9BA=
+github.com/gospider007/conf v0.0.0-20260323170523-429be8f078eb h1:/Fqev1b5NnfhybavIfYHH4E3o7zXd3gNy6if2xoERVA=
+github.com/gospider007/conf v0.0.0-20260323170523-429be8f078eb/go.mod h1:+qVT6EkCWXSENRWMMj/UbUrXZTcuIZop65kTVknPcw8=
+github.com/gospider007/gson v0.0.0-20260323170526-fb9f244ac887 h1:EmTjhfZBYWBeM4d41rGNBGhXTMBmfeRYDNF3/tdzSjo=
+github.com/gospider007/gson v0.0.0-20260323170526-fb9f244ac887/go.mod h1:R0Oc6mKhNT9uE7OYMf6W8vPJMJVfa2cd6C/f53bzgXE=
 github.com/gospider007/kinds v0.0.0-20260211060834-06a10e2431d8 h1:EivYaFLOylV33Q5aRkF/cwkisOkDVDWLJ5CXfHYz5mU=
 github.com/gospider007/kinds v0.0.0-20260211060834-06a10e2431d8/go.mod h1:+DxImhsKjwFWM5qTeuWSsh6q6Rax+H0fN3QcuoJZos8=
 github.com/gospider007/re v0.0.0-20260227072205-6223d82a3dab h1:LEp9NN4EMV9GuTWnXRN4eiiUAjpCEq2Z4HpVgTQx0JY=
@@ -53,8 +53,8 @@ github.com/xyproto/randomstring v1.0.5 h1:YtlWPoRdgMu3NZtP45drfy1GKoojuR7hmRcnhZ
 github.com/xyproto/randomstring v1.0.5/go.mod h1:rgmS5DeNXLivK7YprL0pY+lTuhNQW3iGxZ18UQApw/E=
 go.mongodb.org/mongo-driver v1.17.9 h1:IexDdCuuNJ3BHrELgBlyaH9p60JXAvdzWR128q+U5tU=
 go.mongodb.org/mongo-driver v1.17.9/go.mod h1:LlOhpH5NUEfhxcAwG0UEkMqwYcc4JU18gtCdGudk/tQ=
-golang.org/x/image v0.37.0 h1:ZiRjArKI8GwxZOoEtUfhrBtaCN+4b/7709dlT6SSnQA=
-golang.org/x/image v0.37.0/go.mod h1:/3f6vaXC+6CEanU4KJxbcUZyEePbyKbaLoDOe4ehFYY=
+golang.org/x/image v0.38.0 h1:5l+q+Y9JDC7mBOMjo4/aPhMDcxEptsX+Tt3GgRQRPuE=
+golang.org/x/image v0.38.0/go.mod h1:/3f6vaXC+6CEanU4KJxbcUZyEePbyKbaLoDOe4ehFYY=
 golang.org/x/net v0.52.0 h1:He/TN1l0e4mmR3QqHMT2Xab3Aj3L9qjbhRm78/6jrW0=
 golang.org/x/net v0.52.0/go.mod h1:R1MAz7uMZxVMualyPXb+VaqGSa3LIaUqk0eEt3w36Sw=
 golang.org/x/text v0.35.0 h1:JOVx6vVDFokkpaq1AEptVzLTpDe9KGpj5tR4/X+ybL8=
