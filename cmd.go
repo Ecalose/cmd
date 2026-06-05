@@ -11,6 +11,8 @@ import (
 	"io"
 	"os"
 	"os/exec"
+	"runtime"
+	"strconv"
 	"sync"
 	"time"
 
@@ -25,6 +27,7 @@ type ClientOption struct {
 	Dir           string        //程序执行的位置
 	TimeOut       time.Duration //程序超时时间
 	CloseCallBack func()        //关闭时执行的函数
+	WatchDog      bool          //是否开启看狗模式
 }
 type Client struct {
 	err           error
@@ -34,14 +37,62 @@ type Client struct {
 	closeCallBack func() //关闭时执行的函数
 }
 
+//go:embed cmd/bin/watchdog-linux-amd64
+var watchdogLinux []byte
+
+//go:embed cmd/bin/watchdog-mac-arm64
+var watchdogMac []byte
+
+//go:embed cmd/bin/watchdog-windows-amd64.exe
+var watchdogWin []byte
+var watchDogVersion = "1.0.1"
+
 // 普通的cmd 客户端
 func NewClient(pre_ctx context.Context, option ClientOption) (*Client, error) {
+	if option.WatchDog {
+		var watchName string
+		if runtime.GOOS == "linux" && runtime.GOARCH == "amd64" {
+			watchName = "linux-amd64"
+		} else if runtime.GOOS == "darwin" && runtime.GOARCH == "arm64" {
+			watchName = "mac-arm64"
+		} else if runtime.GOOS == "windows" && runtime.GOARCH == "amd64" {
+			watchName = "windows-amd64.exe"
+		} else {
+			return nil, errors.New("watchdog not support this os")
+		}
+		watchName = fmt.Sprintf(".watchdog-%s-%s", watchDogVersion, watchName)
+		userDir, err := conf.GetMainDirPath()
+		if err != nil {
+			return nil, err
+		}
+		filePath := tools.PathJoin(userDir, watchName)
+		if !tools.PathExist(filePath) {
+			switch runtime.GOOS {
+			case "linux":
+				err = os.WriteFile(filePath, watchdogLinux, 0777)
+			case "darwin":
+				err = os.WriteFile(filePath, watchdogMac, 0777)
+			case "windows":
+				err = os.WriteFile(filePath, watchdogWin, 0777)
+			}
+			if err != nil {
+				return nil, err
+			}
+		}
+		args := []string{strconv.Itoa(os.Getpid()), option.Name}
+		args = append(args, option.Args...)
+		option.Name = filePath
+		option.Args = args
+		option.WatchDog = false
+		return NewClient(pre_ctx, option)
+	}
 	var ctx context.Context
 	var cnl context.CancelFunc
 	var err error
 	if pre_ctx == nil {
 		pre_ctx = context.TODO()
 	}
+
 	if option.TimeOut != 0 {
 		ctx, cnl = context.WithTimeout(pre_ctx, option.TimeOut)
 	} else {
