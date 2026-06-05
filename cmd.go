@@ -28,6 +28,7 @@ type ClientOption struct {
 	TimeOut       time.Duration //程序超时时间
 	CloseCallBack func()        //关闭时执行的函数
 	WatchDog      bool          //是否开启看狗模式
+	DisSign       bool
 }
 type Client struct {
 	err           error
@@ -84,6 +85,7 @@ func NewClient(pre_ctx context.Context, option ClientOption) (*Client, error) {
 		option.Name = filePath
 		option.Args = args
 		option.WatchDog = false
+		option.DisSign = true
 		return NewClient(pre_ctx, option)
 	}
 	var ctx context.Context
@@ -108,7 +110,9 @@ func NewClient(pre_ctx context.Context, option ClientOption) (*Client, error) {
 		cnl:           cnl,
 		closeCallBack: option.CloseCallBack,
 	}
-	go tools.Signal(ctx, result.Close)
+	if !option.DisSign {
+		go tools.Signal(ctx, result.Close)
+	}
 	return result, err
 }
 
