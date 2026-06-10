@@ -29,6 +29,7 @@ type ClientOption struct {
 	CloseCallBack func()        //关闭时执行的函数
 	WatchDog      bool          //是否开启看狗模式
 	DisSign       bool
+	Detach        bool
 }
 type Client struct {
 	err           error
@@ -101,7 +102,7 @@ func NewClient(pre_ctx context.Context, option ClientOption) (*Client, error) {
 		ctx, cnl = context.WithCancel(pre_ctx)
 	}
 	cmd := exec.CommandContext(ctx, option.Name, option.Args...)
-	setAttr(cmd)
+	setAttr(cmd, option.Detach)
 	cmd.Env = os.Environ()
 	cmd.Dir = option.Dir
 	result := &Client{

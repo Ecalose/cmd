@@ -8,10 +8,14 @@ import (
 )
 
 // 普通的cmd 客户端
-func setAttr(cmd *exec.Cmd) {
-	cmd.SysProcAttr = &syscall.SysProcAttr{
-		Setpgid: true,
+func setAttr(cmd *exec.Cmd, detach bool) {
+	attr := &syscall.SysProcAttr{}
+	if detach {
+		attr.Setsid = true
+	} else {
+		attr.Setpgid = true
 	}
+	cmd.SysProcAttr = attr
 }
 func killProcess(cmd *exec.Cmd) {
 	cmd.Process.Kill()
