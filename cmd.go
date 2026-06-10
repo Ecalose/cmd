@@ -32,6 +32,7 @@ type ClientOption struct {
 	Detach        bool
 }
 type Client struct {
+	option        ClientOption
 	err           error
 	cmd           *exec.Cmd
 	ctx           context.Context
@@ -47,7 +48,7 @@ var watchdogMac []byte
 
 //go:embed cmd/bin/watchdog-windows-amd64.exe
 var watchdogWin []byte
-var watchDogVersion = "1.0.1"
+var watchDogVersion = "1.0.3"
 
 // 普通的cmd 客户端
 func NewClient(pre_ctx context.Context, option ClientOption) (*Client, error) {
@@ -114,6 +115,7 @@ func NewClient(pre_ctx context.Context, option ClientOption) (*Client, error) {
 	if !option.DisSign {
 		go tools.Signal(ctx, result.Close)
 	}
+	result.option = option
 	return result, err
 }
 
@@ -433,7 +435,7 @@ func (obj *Client) Join() {
 func (obj *Client) Close() {
 	defer obj.cnl()
 	if obj.cmd.Process != nil {
-		killProcess(obj.cmd)
+		killProcess(obj.cmd, obj.option.Detach)
 	}
 	if obj.closeCallBack != nil {
 		obj.closeCallBack()

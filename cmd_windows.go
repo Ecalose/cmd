@@ -11,6 +11,10 @@ import (
 func setAttr(cmd *exec.Cmd, detach bool) {
 	cmd.SysProcAttr = &syscall.SysProcAttr{}
 }
-func killProcess(cmd *exec.Cmd) {
-	cmd.Process.Kill()
+func killProcess(cmd *exec.Cmd, detach bool) {
+	if detach {
+		cmd.Process.Signal(syscall.SIGTERM)
+	} else {
+		cmd.Process.Signal(syscall.SIGKILL)
+	}
 }

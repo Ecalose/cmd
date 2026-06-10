@@ -18,7 +18,12 @@ func setAttr(cmd *exec.Cmd, detach bool) {
 	}
 	cmd.SysProcAttr = attr
 }
-func killProcess(cmd *exec.Cmd) {
-	cmd.Process.Kill()
-	syscall.Kill(-cmd.Process.Pid, syscall.SIGKILL) // Kill the process and its children
+func killProcess(cmd *exec.Cmd, detach bool) {
+	if detach {
+		cmd.Process.Signal(syscall.SIGTERM)
+		syscall.Kill(cmd.Process.Pid, syscall.SIGTERM)
+	} else {
+		cmd.Process.Signal(syscall.SIGKILL)
+		syscall.Kill(-cmd.Process.Pid, syscall.SIGKILL) // Kill the process and its children
+	}
 }
