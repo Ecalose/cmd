@@ -3,9 +3,9 @@ module github.com/gospider007/cmd
 go 1.26.0
 
 require (
-	github.com/gospider007/conf v0.0.0-20260708150831-0e01d9a06f9a
-	github.com/gospider007/gson v0.0.0-20260708150835-bf0405eb2c91
-	github.com/gospider007/tools v0.0.0-20260708150649-46c42ee5f3f7
+	github.com/gospider007/conf v0.0.0-20260709025732-6bdd0bd7e789
+	github.com/gospider007/gson v0.0.0-20260709025734-25eb879e791e
+	github.com/gospider007/tools v0.0.0-20260709025734-e176d9ab209e
 )
 
 require (
