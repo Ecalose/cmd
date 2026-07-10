@@ -11,8 +11,8 @@ github.com/google/go-cmp v0.7.0/go.mod h1:pXiqmnSA92OHEEa9HXL2W4E7lf9JzCmGVUdgjX
 github.com/google/gofuzz v1.0.0/go.mod h1:dBl0BpW6vV/+mYPU4Po3pmUjxk6FQPldtuIdl/M65Eg=
 github.com/gospider007/conf v0.0.0-20260709025907-24fc9249c97b h1:UXT1fsAMzqFdqKx5lxsLEbcgvqSBnr1fxAlAhqX+J9Y=
 github.com/gospider007/conf v0.0.0-20260709025907-24fc9249c97b/go.mod h1:5HRB02zgzHcN9tkequ20P6Fy5NvxjtDQNPjSysNGJR4=
-github.com/gospider007/gson v0.0.0-20260709025913-dcba40b9836c h1:XyNxIdi1+FhTDupDwyun+uBY8AKLZR2qgWMI2/ShOGM=
-github.com/gospider007/gson v0.0.0-20260709025913-dcba40b9836c/go.mod h1:8euw0FgH2KIz9+LOBrSYc0N1vXvgKu2HAmIEugj/4/8=
+github.com/gospider007/gson v0.0.0-20260710065426-ebce307b1bed h1:wFeyy/N9/1MVvsg40+VcYcsE1WtcFsGeafQDe0cv9ng=
+github.com/gospider007/gson v0.0.0-20260710065426-ebce307b1bed/go.mod h1:3cB0ds/+i/UqiUtp+Bs7W0CKWjSIqB2pFx8LeF+adKA=
 github.com/gospider007/kinds v0.0.0-20260211060834-06a10e2431d8 h1:EivYaFLOylV33Q5aRkF/cwkisOkDVDWLJ5CXfHYz5mU=
 github.com/gospider007/kinds v0.0.0-20260211060834-06a10e2431d8/go.mod h1:+DxImhsKjwFWM5qTeuWSsh6q6Rax+H0fN3QcuoJZos8=
 github.com/gospider007/re v0.0.0-20260227072205-6223d82a3dab h1:LEp9NN4EMV9GuTWnXRN4eiiUAjpCEq2Z4HpVgTQx0JY=
