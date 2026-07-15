@@ -3,8 +3,8 @@ module github.com/gospider007/cmd
 go 1.26.0
 
 require (
-	github.com/gospider007/conf v0.0.0-20260713095226-6eca78280ce9
-	github.com/gospider007/gson v0.0.0-20260713095227-03d10a4e9883
+	github.com/gospider007/conf v0.0.0-20260715073832-f0c3fe6cf561
+	github.com/gospider007/gson v0.0.0-20260715073838-ef0ec5b205d0
 	github.com/gospider007/tools v0.0.0-20260715073657-142e5b88d395
 )
 
