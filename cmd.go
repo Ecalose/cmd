@@ -395,6 +395,14 @@ func (obj *Client) Output() ([]byte, error) {
 	case <-errC:
 		<-outC
 	}
+	if err != nil {
+		for range 3 {
+			if b.String() != "" {
+				break
+			}
+			time.Sleep(time.Second)
+		}
+	}
 	return b.Bytes(), err
 }
 
