@@ -529,3 +529,9 @@ func (obj *Client) Close() {
 func (obj *Client) Ctx() context.Context {
 	return obj.ctx
 }
+func (obj *Client) ExitCode() int {
+	if obj.cmd.ProcessState == nil {
+		return 0
+	}
+	return obj.cmd.ProcessState.ExitCode()
+}
