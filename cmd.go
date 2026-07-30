@@ -19,6 +19,7 @@ import (
 	"github.com/gospider007/conf"
 	"github.com/gospider007/gson"
 	"github.com/gospider007/tools"
+	"github.com/kr/pty"
 )
 
 type ClientOption struct {
@@ -368,12 +369,6 @@ func (obj *JyClient) Close() {
 // 运行命令
 func (obj *Client) Output() ([]byte, error) {
 	defer obj.Close()
-	if obj.cmd.Stdout != nil {
-		return nil, errors.New("exec: Stdout already set")
-	}
-	if obj.cmd.Stderr != nil {
-		return nil, errors.New("exec: Stderr already set")
-	}
 	errReadPip, err := obj.StdErrPipe()
 	if err != nil {
 		return nil, err
@@ -414,7 +409,21 @@ func (obj *Client) Run() error {
 
 // 导出cmd 的 in管道
 func (obj *Client) StdInPipe() (io.WriteCloser, error) {
-	return obj.cmd.StdinPipe()
+	if obj.cmd.Stdin != nil {
+		return nil, errors.New("exec: Stdin already set")
+	}
+	if obj.cmd.Process != nil {
+		return nil, errors.New("exec: StdinPipe after process started")
+	}
+	pr, pw, err := obj.pty()
+	if err != nil {
+		return nil, err
+	}
+	obj.cmd.Stdin = pr
+	return pw, nil
+}
+func (obj *Client) pty() (io.ReadCloser, io.WriteCloser, error) {
+	return pty.Open()
 }
 func (obj *Client) Err() error {
 	if obj.cmd.Err != nil {
@@ -425,19 +434,38 @@ func (obj *Client) Err() error {
 
 // 导出cmd 的 out管道
 func (obj *Client) StdOutPipe() (io.ReadCloser, error) {
-	return obj.cmd.StdoutPipe()
+	if obj.cmd.Stdout != nil {
+		return nil, errors.New("exec: Stdout already set")
+	}
+	if obj.cmd.Process != nil {
+		return nil, errors.New("exec: StdoutPipe after process started")
+	}
+	pr, pw, err := obj.pty()
+	if err != nil {
+		return nil, err
+	}
+	obj.cmd.Stdout = pw
+	return pr, nil
 }
 
 // 导出cmd 的error管道
 func (obj *Client) StdErrPipe() (io.ReadCloser, error) {
-	return obj.cmd.StderrPipe()
+	if obj.cmd.Stderr != nil {
+		return nil, errors.New("exec: Stderr already set")
+	}
+	if obj.cmd.Process != nil {
+		return nil, errors.New("exec: StderrPipe after process started")
+	}
+	pr, pw, err := obj.pty()
+	if err != nil {
+		return nil, err
+	}
+	obj.cmd.Stderr = pw
+	return pr, nil
 }
 
 // 设置cmd 的 error管道
 func (obj *Client) SetStdErr(stderr io.Writer) error {
-	if obj.cmd.Stderr != nil {
-		return errors.New("exec: Stderr already set")
-	}
 	errReadPip, err := obj.StdErrPipe()
 	if err != nil {
 		return err
@@ -445,15 +473,11 @@ func (obj *Client) SetStdErr(stderr io.Writer) error {
 	go func() {
 		tools.CopyWitchContext(obj.ctx, stderr, errReadPip)
 	}()
-	obj.cmd.Stderr = stderr
 	return nil
 }
 
 // 设置cmd 的 out管道
 func (obj *Client) SetStdOut(stdout io.Writer) error {
-	if obj.cmd.Stdout != nil {
-		return errors.New("exec: Stdout already set")
-	}
 	outReadPip, err := obj.StdOutPipe()
 	if err != nil {
 		return err
@@ -461,15 +485,11 @@ func (obj *Client) SetStdOut(stdout io.Writer) error {
 	go func() {
 		tools.CopyWitchContext(obj.ctx, stdout, outReadPip)
 	}()
-	obj.cmd.Stdout = stdout
 	return nil
 }
 
 // 设置cmd 的 in管道
 func (obj *Client) SetStdIn(stdin io.Reader) error {
-	if obj.cmd.Stdin != nil {
-		return errors.New("exec: Stdin already set")
-	}
 	stdinWritePip, err := obj.StdInPipe()
 	if err != nil {
 		return err
@@ -477,7 +497,6 @@ func (obj *Client) SetStdIn(stdin io.Reader) error {
 	go func() {
 		tools.CopyWitchContext(obj.ctx, stdinWritePip, stdin)
 	}()
-	obj.cmd.Stdin = stdin
 	return nil
 }
 

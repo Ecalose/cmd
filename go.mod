@@ -6,10 +6,12 @@ require (
 	github.com/gospider007/conf v0.0.0-20260720134945-cff12ad9c3af
 	github.com/gospider007/gson v0.0.0-20260720134949-eddccd657897
 	github.com/gospider007/tools v0.0.0-20260720134718-b120c34e17d2
+	github.com/kr/pty v1.1.8
 )
 
 require (
 	github.com/andybalholm/brotli v1.2.2 // indirect
+	github.com/creack/pty v1.1.24 // indirect
 	github.com/golang/snappy v1.0.0 // indirect
 	github.com/gospider007/kinds v0.0.0-20260211060834-06a10e2431d8 // indirect
 	github.com/gospider007/re v0.0.0-20260227072205-6223d82a3dab // indirect
