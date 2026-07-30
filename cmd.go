@@ -368,7 +368,29 @@ func (obj *JyClient) Close() {
 // 运行命令
 func (obj *Client) Output() ([]byte, error) {
 	defer obj.Close()
-	return obj.cmd.CombinedOutput()
+	if obj.cmd.Stdout != nil {
+		return nil, errors.New("exec: Stdout already set")
+	}
+	if obj.cmd.Stderr != nil {
+		return nil, errors.New("exec: Stderr already set")
+	}
+	errReadPip, err := obj.StdErrPipe()
+	if err != nil {
+		return nil, err
+	}
+	outReadPip, err := obj.StdOutPipe()
+	if err != nil {
+		return nil, err
+	}
+	b := bytes.NewBuffer(nil)
+	go func() {
+		tools.CopyWitchContext(obj.ctx, b, outReadPip)
+	}()
+	go func() {
+		tools.CopyWitchContext(obj.ctx, b, errReadPip)
+	}()
+	err = obj.Run()
+	return b.Bytes(), err
 }
 
 // 运行命令
@@ -412,18 +434,51 @@ func (obj *Client) StdErrPipe() (io.ReadCloser, error) {
 }
 
 // 设置cmd 的 error管道
-func (obj *Client) SetStdErr(stderr io.WriteCloser) {
+func (obj *Client) SetStdErr(stderr io.Writer) error {
+	if obj.cmd.Stderr != nil {
+		return errors.New("exec: Stderr already set")
+	}
+	errReadPip, err := obj.StdErrPipe()
+	if err != nil {
+		return err
+	}
+	go func() {
+		tools.CopyWitchContext(obj.ctx, stderr, errReadPip)
+	}()
 	obj.cmd.Stderr = stderr
+	return nil
 }
 
 // 设置cmd 的 out管道
-func (obj *Client) SetStdOut(stdout io.WriteCloser) {
+func (obj *Client) SetStdOut(stdout io.Writer) error {
+	if obj.cmd.Stdout != nil {
+		return errors.New("exec: Stdout already set")
+	}
+	outReadPip, err := obj.StdOutPipe()
+	if err != nil {
+		return err
+	}
+	go func() {
+		tools.CopyWitchContext(obj.ctx, stdout, outReadPip)
+	}()
 	obj.cmd.Stdout = stdout
+	return nil
 }
 
 // 设置cmd 的 in管道
-func (obj *Client) SetStdIn(stdin io.ReadCloser) {
+func (obj *Client) SetStdIn(stdin io.Reader) error {
+	if obj.cmd.Stdin != nil {
+		return errors.New("exec: Stdin already set")
+	}
+	stdinWritePip, err := obj.StdInPipe()
+	if err != nil {
+		return err
+	}
+	go func() {
+		tools.CopyWitchContext(obj.ctx, stdinWritePip, stdin)
+	}()
 	obj.cmd.Stdin = stdin
+	return nil
 }
 
 // 等待运行结束
