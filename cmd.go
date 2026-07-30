@@ -378,13 +378,23 @@ func (obj *Client) Output() ([]byte, error) {
 		return nil, err
 	}
 	b := bytes.NewBuffer(nil)
+	outC := make(chan struct{})
+	errC := make(chan struct{})
 	go func() {
+		defer close(outC)
 		tools.CopyWitchContext(obj.ctx, b, outReadPip)
 	}()
 	go func() {
+		defer close(errC)
 		tools.CopyWitchContext(obj.ctx, b, errReadPip)
 	}()
 	err = obj.Run()
+	select {
+	case <-outC:
+		<-errC
+	case <-errC:
+		<-outC
+	}
 	return b.Bytes(), err
 }
 
