@@ -5,7 +5,7 @@ go 1.27.0
 require (
 	github.com/gospider007/conf v0.0.0-20260824054722-d17b88fbbbcb
 	github.com/gospider007/gson v0.0.0-20260826002950-895d7dff6266
-	github.com/gospider007/tools v0.0.0-20260824054625-953e094a3970
+	github.com/gospider007/tools v0.0.0-20260826022531-159b55a750ab
 	github.com/kr/pty v1.1.8
 )
 
