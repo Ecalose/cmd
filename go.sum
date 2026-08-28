@@ -12,10 +12,10 @@ github.com/golang/snappy v1.0.0/go.mod h1:/XxbfmMg8lxefKM7IXC3fBNl/7bRcc72aCRzEW
 github.com/google/go-cmp v0.7.0 h1:wk8382ETsv4JYUZwIsn6YpYiWiBsYLSJiTsyBybVuN8=
 github.com/google/go-cmp v0.7.0/go.mod h1:pXiqmnSA92OHEEa9HXL2W4E7lf9JzCmGVUdgjX3N/iU=
 github.com/google/gofuzz v1.0.0/go.mod h1:dBl0BpW6vV/+mYPU4Po3pmUjxk6FQPldtuIdl/M65Eg=
-github.com/gospider007/conf v0.0.0-20260828020129-381beed120eb h1:bToBYykJPN19ld8JFJUtD1u4rYN66n8/Y8IbB14jNpY=
-github.com/gospider007/conf v0.0.0-20260828020129-381beed120eb/go.mod h1:sO5JsxKnwmDjL4xggKN4M5ijwGAweGO5mM52XA6NicA=
-github.com/gospider007/gson v0.0.0-20260828020149-4220411178f2 h1:luR8tFOKtmntbYPvu1PS+3GZ0pSBAPhqmpHvqH6ZKeU=
-github.com/gospider007/gson v0.0.0-20260828020149-4220411178f2/go.mod h1:LtESW2t7SqisM15ftz9bIKFO/XNAfpUmRdoh/jGhqAE=
+github.com/gospider007/conf v0.0.0-20260828020243-8616afaa3b6e h1:yg861n6iTjL0FDqVRSDgiz4wjXHhuXnurNp7iSZaykc=
+github.com/gospider007/conf v0.0.0-20260828020243-8616afaa3b6e/go.mod h1:X6mX6z47aF6LzyhqE3vFcvlzyVl6RbdfMw+ikRB6GcA=
+github.com/gospider007/gson v0.0.0-20260828020246-dae16e74e9cb h1:pDWGRugSt2PY+9FMzzfYoC/fw4Q2pjC7pDAlxj+R7fw=
+github.com/gospider007/gson v0.0.0-20260828020246-dae16e74e9cb/go.mod h1:vndeAqc91HC5dv4dRKERTl59OMezEmR/0HBNmC9HFMc=
 github.com/gospider007/kinds v0.0.0-20260824054539-a612e386b5ac h1:lJb+JuTFlDiG/5t+7/224eIg3gsLrGJ1igeARm2z2Fg=
 github.com/gospider007/kinds v0.0.0-20260824054539-a612e386b5ac/go.mod h1:75RS5JPKWcrHfr+7VCZxhdI5anNguHHGS/Y9HPWBqTw=
 github.com/gospider007/re v0.0.0-20260824054539-32823144d328 h1:2nJmbFr4WnHMy26A0GijYfAF80BNxoYEB1uKlCQV930=
