@@ -4,7 +4,7 @@ go 1.27.0
 
 require (
 	github.com/gospider007/conf v0.0.0-20260907003645-dd51e0c1d0a8
-	github.com/gospider007/gson v0.0.0-20260907003655-a4a667dfce84
+	github.com/gospider007/gson v0.0.0-20260907015427-4782363d52be
 	github.com/gospider007/tools v0.0.0-20260907003557-2e499500cd4e
 	github.com/kr/pty v1.1.8
 )
@@ -20,12 +20,12 @@ require (
 	github.com/minio/minlz v1.2.0 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.3-0.20250322232337-35a7c28c31ee // indirect
-	github.com/stretchr/testify v1.12.1 // indirect
 	github.com/tidwall/gjson v1.19.0 // indirect
 	github.com/tidwall/match v1.2.0 // indirect
 	github.com/tidwall/pretty v1.2.1 // indirect
 	github.com/tidwall/sjson v1.2.5 // indirect
 	go.mongodb.org/mongo-driver/v2 v2.9.0 // indirect
+	go.yaml.in/yaml/v3 v3.0.5 // indirect
 	golang.org/x/image v0.45.0 // indirect
 	golang.org/x/net v0.58.0 // indirect
 	golang.org/x/text v0.41.0 // indirect
