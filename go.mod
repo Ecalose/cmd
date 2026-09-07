@@ -4,8 +4,8 @@ go 1.27.0
 
 require (
 	github.com/gospider007/conf v0.0.0-20260904000133-1eea130ab67e
-	github.com/gospider007/gson v0.0.0-20260904000136-63b840745131
-	github.com/gospider007/tools v0.0.0-20260904000039-eb3a1f585998
+	github.com/gospider007/gson v0.0.0-20260907003557-cfc385679894
+	github.com/gospider007/tools v0.0.0-20260907003557-2e499500cd4e
 	github.com/kr/pty v1.1.8
 )
 
